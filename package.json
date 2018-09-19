@@ -2,11 +2,11 @@
   "name": "weatherapp",
   "version": "1.0.0",
   "description": "An app that retrieves the weather from any country",
-  "main": "app/assets/js/app.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development ./app/assets/js/app.js --output ./app/temp/js/main.js",
-    "build": "webpack --mode production ./app/assets/js/app.js --output ./app/temp/js/main.js"
+    "dev": "webpack --mode development ./app/assets/js/main.js --output ./app/temp/js/main.js",
+    "build": "webpack --mode production ./app/assets/js/main.js --output ./app/temp/js/main.js"
   },
   "repository": {
     "type": "git",
