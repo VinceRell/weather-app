@@ -2,9 +2,11 @@
   "name": "weatherapp",
   "version": "1.0.0",
   "description": "An app that retrieves the weather from any country",
-  "main": "index.js",
+  "main": "app/assets/js/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development ./app/assets/js/app.js --output ./app/temp/js/main.js",
+    "build": "webpack --mode production ./app/assets/js/app.js --output ./app/temp/js/main.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,9 @@
   },
   "homepage": "https://github.com/VinceRell/weather-app#readme",
   "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.2",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.0"
   }
