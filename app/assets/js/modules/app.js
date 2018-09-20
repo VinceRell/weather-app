@@ -1,3 +1,6 @@
+import {Http} from "./http.js";
+import {WeatherData, weatherProxyHandler} from "./weatherdata.js";
+
 class AppComps {
     constructor() {
       this.ELEMENT_SEARCH_BUTTON = document.querySelector("button");
@@ -16,7 +19,27 @@ class AppComps {
     
     
     searchWeather() {
-      alert("clicked"); 
+      const city_name =  this.ELEMENT_SEARCHED_CITY.value.trim();
+      const app_ID = "b17eae06be63f181c170c4352a5a48f0"; 
+      const url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name +  "&units=metric&appid=" + app_ID;
+      if(city_name.length === 0){
+        alert("please enter a city name")
+      }
+      Http.fetchDataURL(url)
+              .then(responseData => {
+                const weatherData = new WeatherData(city_name, responseData.weather[0].description.toUpperCase());
+                const weatherProxy = new Proxy(weatherData, weatherProxyHandler);
+                weatherProxy.temperature = responseData.main.temp;
+                this.displayWeather(weatherProxy);
+              })
+              .catch(error => alert(error));
+    }
+
+    displayWeather(Data) {
+      this.ELEMENT_WEATHER_CITY.textContent = Data.cityName;
+      this.ELEMENT_WEATHER_DESCRIPTION.textContent = Data.description;
+      this.ELEMENT_WEATHER_TEMPERATURE.textContent = Data.temperature;
+      this.ELEMENT_WEATHER_BOX.style.display = "block";
     }
   }
   
